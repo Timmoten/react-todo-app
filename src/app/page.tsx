@@ -1,5 +1,6 @@
 "use client";
 
+import TodoForm from "@/components/todo-form";
 import { Todo } from "@/types/todo";
 import { useEffect, useState } from "react";
 
@@ -66,24 +67,11 @@ export default function Page() {
 
   return  (<main className="max-w-2xl mx-auto p-4 bg-slate-200">
     <h1 className="text-2xl font-bold mb-6">Todo App</h1>
-    <form onSubmit={handleSubmit}>
-      <div className="flex gap-2">
-        <input 
-        type="text" 
-        value={newTodo}
-        onChange={handleIputChange}
-        placeholder="Add a new todo..."
-        className="flex-1 p-2 border rounded"
-        />
-        <button 
-        type="submit"
-        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors disabled:bg-blue-300 enabled:shadow-md"
-        disabled={!newTodo.trim()}
-        >
-          Add
-        </button>
-      </div>
-    </form>
+    <TodoForm 
+    newTodo={newTodo}
+    onInputChange={handleIputChange}
+    onSubmit={handleSubmit}
+    />
 
     <div className="space-y-3 mt-2">
       {todos.map((todo) => (
