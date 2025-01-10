@@ -1,24 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { Todo } from "@/types/todo";
+import { useEffect, useState } from "react";
 
-type Todo = {
-  id: number;
-  title: string;
-  completed: boolean;
-};
+
 
 export default function Page() {
   const [todos, setTodos] = useState<Todo[]>([]);
-
   const [newTodo, setNewTodo] = useState("");
 
-  const [nextId, setNextId] = useState(1);
+  //const [nextId, setNextId] = useState(1);
+
+  useEffect(() => {
+    const storedTodos = localStorage.getItem("todos");
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
     if (!newTodo.trim()) return;
+
+    const nextId = todos.length ? todos[todos.length - 1].id + 1 : 1;
 
     const newTodoItem: Todo = {
       id: nextId,
@@ -28,7 +37,7 @@ export default function Page() {
 
     setTodos((prevTodos) => [...prevTodos, newTodoItem]);
 
-    setNextId((currentId) => currentId + 1);
+    //setNextId((currentId) => currentId + 1);
 
     setNewTodo("");
   }
