@@ -5,6 +5,8 @@ import { TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { Tab } from "@/types/tab";
 import TodoForm from "./todo-form";
 import TodoList from "./todo-list";
+import { Button } from "./ui/button";
+import { Trash } from "lucide-react";
 
 interface TodoTabsProps {
     tabs: Tab[];
@@ -13,6 +15,7 @@ interface TodoTabsProps {
     onSubmit: (e: React.FormEvent, tab: Tab) => void;
     onToggle: (id: number, tabId: number) => void;
     onDelete: (id: number, tabId: number) => void;
+    onTabDelete: (id: number) => void;
 }
 
 export default function TodoTabList({
@@ -21,7 +24,8 @@ export default function TodoTabList({
     onInputChange, 
     onSubmit, 
     onToggle, 
-    onDelete
+    onDelete,
+    onTabDelete,
 }: TodoTabsProps) {
     if (tabs.length === 0) {
         return (
@@ -57,6 +61,15 @@ export default function TodoTabList({
                   onToggle={onToggle}
                   onDelete={onDelete}
                 />
+              </div>
+              <div className="p-2">
+              <Button
+              variant={"destructive"}
+              onClick={() => onTabDelete(tab.id)}
+              >
+                Remove List
+              <Trash />
+              </Button>
               </div>
             </TabsContent>
           ))}

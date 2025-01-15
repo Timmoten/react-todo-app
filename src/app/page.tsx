@@ -6,8 +6,6 @@ import TodoTabForm from "@/components/todo-tab-form";
 import { Tab } from "@/types/tab";
 import TodoTabList from "@/components/todo-tab-list";
 
-
-
 export default function Page() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [newTodo, setNewTodo] = useState("");
@@ -157,6 +155,12 @@ export default function Page() {
     });
   }
 
+  function handleDeleteTab(id: number) {
+    setTabs((currentTabs) => {
+      return currentTabs.filter((tab) => tab.id !== id);
+    });
+  }
+
   function handleIputChangeTab(e: React.ChangeEvent<HTMLInputElement>) {
     setNewTab(e.target.value);
   }
@@ -181,6 +185,7 @@ export default function Page() {
         onSubmit={handleSubmitForm}
         onToggle={handleToggle}
         onDelete={handleDelete}
+        onTabDelete={handleDeleteTab}
       />
       {/* <Tabs defaultValue="todolistone" className="w-[400px]">
         <TabsList>
