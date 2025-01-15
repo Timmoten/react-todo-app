@@ -12,7 +12,7 @@ interface TodoTabsProps {
     onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onSubmit: (e: React.FormEvent, tab: Tab) => void;
     onToggle: (id: number, tabId: number) => void;
-    onDelete: (id: number) => void;
+    onDelete: (id: number, tabId: number) => void;
 }
 
 export default function TodoTabList({

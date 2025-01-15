@@ -7,7 +7,7 @@ interface TodoListProps {
     tabId: number;
     todos: Todo[];
     onToggle: (id: number, tabId: number) => void;
-    onDelete: (id: number) => void;
+    onDelete: (id: number, tabId: number) => void;
 }
 
 export default function TodoList({ tabId, todos, onToggle, onDelete}: TodoListProps) {

@@ -137,9 +137,23 @@ export default function Page() {
     });
   }
 
-  function handleDelete(id: number) {
-    setTodos((currentTodos) => {
-      return currentTodos.filter((todo) => todo.id !== id);
+  // function handleDelete(id: number) {
+  //   setTodos((currentTodos) => {
+  //     return currentTodos.filter((todo) => todo.id !== id);
+  //   });
+  // }
+
+  function handleDelete(id: number, tabId: number) {
+    setTabs((currentTabs) => {
+      return currentTabs.map((tab) => {
+        if (tabId === tab.id) {
+          return {
+            ...tab,
+            todos: tab.todos.filter((todo) => todo.id !== id),
+          };
+        }
+        return tab;
+      });
     });
   }
 

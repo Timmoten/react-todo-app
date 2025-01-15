@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 interface TodoItemProps {
     todo: Todo;
     onToggle: (id: number, tabId: number) => void;
-    onDelete: (id: number) => void;
+    onDelete: (id: number, tabId: number) => void;
     tabId: number;
 }
 
@@ -28,7 +28,7 @@ export default function TodoItem({ todo, onToggle, onDelete, tabId}: TodoItemPro
               </span>
             </div>
             <Button 
-            onClick={() => onDelete(todo.id)} 
+            onClick={() => onDelete(todo.id, tabId)} 
             variant={"destructive"}
             >
                 Delete
