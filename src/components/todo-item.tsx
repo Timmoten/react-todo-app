@@ -5,11 +5,12 @@ import { Button } from "./ui/button";
 
 interface TodoItemProps {
     todo: Todo;
-    onToggle: (id: number) => void;
+    onToggle: (id: number, tabId: number) => void;
     onDelete: (id: number) => void;
+    tabId: number;
 }
 
-export default function TodoItem({ todo, onToggle, onDelete}: TodoItemProps) {
+export default function TodoItem({ todo, onToggle, onDelete, tabId}: TodoItemProps) {
     return (
         <div key={todo.id} className="p-4 border rounded-lg shadow-sm">
           <div className="flex items-center justify-between">
@@ -17,7 +18,7 @@ export default function TodoItem({ todo, onToggle, onDelete}: TodoItemProps) {
               <input 
               type="checkbox" 
               checked={todo.completed} 
-              onChange={() => onToggle(todo.id)} 
+              onChange={() => onToggle(todo.id, tabId)} 
               className="h-4 w-4" 
               />
               <span 
